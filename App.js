@@ -1,20 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import LoginScreen from './screens/LoginScreen';
+import PatientsListScreen from './screens/PatientsListScreen';
+import PatientDetailScreen from './screens/PatientDetailScreen';
+import CriticalConditionScreen from './screens/CriticalConditionScreen';
+import ProfileScreen from './screens/ProfileScreen';
 
-export default function App() {
+// Use the function you've imported
+
+function App() {
+  const Stack = createNativeStackNavigator();
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Login">
+        <Stack.Screen name="LoginScreen" component={LoginScreen} />
+        <Stack.Screen name="PatientsListScreen" component={PatientsListScreen} />
+        <Stack.Screen name="PatientDetailScreen" component={PatientDetailScreen} />
+        <Stack.Screen name="CriticalConditionScreen" component={CriticalConditionScreen} />
+        <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
+        {/* You can add more screens as needed */}
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
